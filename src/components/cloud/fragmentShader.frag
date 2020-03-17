@@ -49,7 +49,7 @@ float fbm ( in vec2 _st) {
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_res.xy*3.;
-    st += st * abs(sin(u_time*0.1)*3.0);
+    // st += st * abs(sin(u_time*0.1)*3.0);
     vec3 color = vec3(0.0);
 
     vec2 q = vec2(0.);
@@ -74,5 +74,5 @@ void main() {
                 vec3(0.666667,1,1),
                 clamp(length(r.x),0.0,1.0));
 
-    gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,0.5);
+    gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,0.4);
 }

@@ -4,8 +4,7 @@ import TweenMax from 'gsap'
 const THREE = require('three')
 
 
-import * as vertexShader from './vertexShader.vert'
-import * as fragmentShader from './fragmentShader.frag'
+
 const img =  new THREE.TextureLoader().load( './assets/texture.png')
 // img.minFilter = THREE.LinearFilter;
 
@@ -55,51 +54,11 @@ const uniforms = {
           u_res: { value: new THREE.Vector2(window.innerWidth/2, window.innerHeight/2) }
         }
 
-function PlaneS(props) {
-  // This reference will give us direct access to the mesh
-  const mesh = useRef()
-
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
-
-  // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => {
-    uniforms.u_time.value += 0.03
-  }
-
-    // mesh.current.rotation.x = mesh.current.rotation.y += 0.01
-  )
-
-
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={ [12, 6, 2]}
-      onClick={e => setActive(!active)}
-      onPointerOver={e => {
-        setHover(true)
-        // console.log(e)
-      }}
-      onPointerOut={e => setHover(false)}>
-      <planeGeometry attach="geometry" args={[1, 1, 1]} />
-      <shaderMaterial
-        attach="material"
-        args={[{
-           uniforms: uniforms,
-           vertexShader: vertexShader,
-            fragmentShader: fragmentShader
-         }]}
-          transparent
-      />
-    </mesh>
-  )
-}
 
 
 
-class Cloud extends React.Component{
+
+class Home extends React.Component{
   constructor(){
     super()
     this.state = {
@@ -151,7 +110,7 @@ class Cloud extends React.Component{
       <ambientLight />
    <pointLight position={[10, 10, 10]} />
    <PlaneT position={[0, 0, 0]} />
-   <PlaneS position={[0, 0, 0]} />
+
 
       </Canvas>
 
@@ -166,4 +125,4 @@ class Cloud extends React.Component{
     )
   }
 }
-export default Cloud
+export default Home

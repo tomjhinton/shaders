@@ -48,6 +48,7 @@ function PlaneT(props) {
 }
 const mouse = new THREE.Vector2(0, 0)
 const uniforms = {
+          uTexture: { value: img },
           u_mouseX: { value: Math.abs(mouse.x) },
           u_mouseY: { value: Math.abs(mouse.Y) },
           u_mouse: { value: mouse },
@@ -65,10 +66,12 @@ function PlaneS(props) {
 
   // Rotate mesh every frame, this is outside of React without overhead
   useFrame(() => {
-    uniforms.u_time.value += 0.03
+    uniforms.u_time.value += 0.01
+
+      // mesh.current.rotation.x = mesh.current.rotation.y += 0.01
   }
 
-    // mesh.current.rotation.x = mesh.current.rotation.y += 0.01
+
   )
 
 
@@ -83,7 +86,7 @@ function PlaneS(props) {
         // console.log(e)
       }}
       onPointerOut={e => setHover(false)}>
-      <planeGeometry attach="geometry" args={[1, 1, 1]} />
+      <planeGeometry attach="geometry" args={[1, 1, 400, 400]} />
       <shaderMaterial
         attach="material"
         args={[{
@@ -99,7 +102,7 @@ function PlaneS(props) {
 
 
 
-class Cloud extends React.Component{
+class Warp extends React.Component{
   constructor(){
     super()
     this.state = {
@@ -146,14 +149,15 @@ class Cloud extends React.Component{
 
     return (
       <div onMouseMove={this.mouseMove} className="body">
-      <Canvas style={{ background: '#FFFFF' }}>
-      {console.log(this)}
-      <ambientLight />
-   <pointLight position={[10, 10, 10]} />
-   <PlaneT position={[0, 0, 0]} />
-   <PlaneS position={[0, 0, 0]} />
+        <Canvas style={{ background: '#FFFFF' }}>
+          {console.log(this)}
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
 
-      </Canvas>
+          <PlaneS position={[0, 0, 0]} />
+          
+
+        </Canvas>
 
 
 
@@ -166,4 +170,4 @@ class Cloud extends React.Component{
     )
   }
 }
-export default Cloud
+export default Warp
