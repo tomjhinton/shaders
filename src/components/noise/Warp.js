@@ -102,7 +102,7 @@ function PlaneS(props) {
 
 
 
-class Warp extends React.Component{
+class Noise extends React.Component{
   constructor(){
     super()
     this.state = {
@@ -170,4 +170,4 @@ class Warp extends React.Component{
     )
   }
 }
-export default Warp
+export default Noise
